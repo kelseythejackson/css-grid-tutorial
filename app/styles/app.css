@@ -1,0 +1,9 @@
+@import 'utils/index';
+@import 'base/index';
+body {
+    display: flex;
+    top: 0;
+    margin-top: 20px;
+    transform: skewX(25deg);
+
+}

@@ -1,10 +1,46 @@
 /* eslint-env node */
 'use strict';
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app'),
+      postCssNext = require('postcss-cssnext'),
+      postCssImport = require('postcss-partial-import'),
+      postCssPxToRem = require('postcss-pxtorem'),
+      postCssMinMax = require('postcss-media-minmax'),
+      postCssTransform = require('postcss-transform-shortcut');
+      
 
 module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
+    postcssOptions: {
+      compile: {
+        plugins: [
+          {
+            module: postCssImport 
+           },
+           {
+             module: postCssTransform
+           },
+           {
+             module: postCssMinMax
+           },
+          {
+            module: postCssPxToRem,
+            options: {
+              rootValue: 10,
+              propList: ['*'],
+              mediaQuery: true
+            }
+          },
+          {
+            module: postCssNext,
+            options: {
+              browsers: ['last 100 versions'],
+            }
+          }
+        ]
+      }
+    }
+   
     // Add options here
   });
 

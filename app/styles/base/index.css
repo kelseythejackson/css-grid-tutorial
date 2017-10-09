@@ -1,0 +1,8 @@
+@import 'test';
+:fullscreen a {
+    display: flex;
+    @media screen and (500px <= width <= 1200px) {
+    justify-content: center;
+}
+    
+}
